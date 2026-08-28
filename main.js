@@ -297,20 +297,24 @@ document.addEventListener('DOMContentLoaded', () => {
       isEvasiveFixed2 = true;
     }
 
-    const padding = 25;
-    const btnW = btnElem.offsetWidth || 140;
-    const btnH = btnElem.offsetHeight || 45;
+    const padding = 15;
+    const btnW = btnElem.offsetWidth || 130;
+    const btnH = btnElem.offsetHeight || 40;
+
+    // Dynamically calculate trackpad top boundary on any device (Samsung A16, etc.)
+    const trackpadElem = document.getElementById('trackpad');
+    const trackpadTop = trackpadElem ? trackpadElem.getBoundingClientRect().top : (window.innerHeight - 160);
 
     const minX = padding;
-    const maxX = Math.max(minX + 20, window.innerWidth - btnW - padding);
-    const minY = 70;
-    const maxY = Math.max(minY + 20, window.innerHeight - btnH - 180);
+    const maxX = Math.max(minX + 10, window.innerWidth - btnW - padding);
+    const minY = 60;
+    const maxY = Math.max(minY + 20, trackpadTop - btnH - 15); // Safely stays above trackpad on any device
 
     let randomX = Math.random() * (maxX - minX) + minX;
     let randomY = Math.random() * (maxY - minY) + minY;
 
     let attempts = 0;
-    while (Math.hypot(cursorX - (randomX + btnW / 2), cursorY - (randomY + btnH / 2)) < 150 && attempts < 10) {
+    while (Math.hypot(cursorX - (randomX + btnW / 2), cursorY - (randomY + btnH / 2)) < 130 && attempts < 10) {
       randomX = Math.random() * (maxX - minX) + minX;
       randomY = Math.random() * (maxY - minY) + minY;
       attempts++;

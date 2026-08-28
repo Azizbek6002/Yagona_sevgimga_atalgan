@@ -1,5 +1,22 @@
 /* Custom styling for Love Atmosphere, Heart Cursor, Password Gate & Sticker Rain */
 
+html {
+  height: 100%;
+  height: 100dvh;
+  height: -webkit-fill-available;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: -webkit-fill-available;
+  width: 100%;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  touch-action: manipulation;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }

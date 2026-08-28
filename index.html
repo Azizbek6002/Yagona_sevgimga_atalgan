@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>Rozibkam Uchun ❤️</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -14,21 +14,21 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gradient-to-br from-pink-100 via-rose-200 to-red-100 min-h-screen font-['Poppins'] overflow-hidden select-none relative">
+<body class="bg-gradient-to-br from-pink-100 via-rose-200 to-red-100 min-h-[100dvh] font-['Poppins'] overflow-x-hidden select-none relative">
 
   <!-- PASSWORD GATE OVERLAY -->
-  <div id="passwordOverlay" class="fixed inset-0 z-50 bg-gradient-to-br from-pink-200 via-rose-300 to-red-200 flex items-center justify-center p-4">
-    <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-6 max-w-xs w-full text-center shadow-2xl border-2 border-white/80 animate-pop-in" id="passBox">
-      <div class="text-5xl mb-3 animate-pulse">🔒💖</div>
-      <h2 class="text-xl font-bold text-rose-700 mb-1">Maxfiy Parol</h2>
-      <p class="text-xs text-rose-400 font-medium mb-4">Ushbu sahifa faqat maxsus inson uchun!</p>
+  <div id="passwordOverlay" class="fixed inset-0 z-50 bg-gradient-to-br from-pink-200 via-rose-300 to-red-200 flex items-center justify-center p-4 overflow-y-auto">
+    <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-5 sm:p-6 max-w-xs w-full text-center shadow-2xl border-2 border-white/80 animate-pop-in my-auto" id="passBox">
+      <div class="text-4xl sm:text-5xl mb-2 sm:mb-3 animate-pulse">🔒💖</div>
+      <h2 class="text-lg sm:text-xl font-bold text-rose-700 mb-1">Maxfiy Parol</h2>
+      <p class="text-[11px] sm:text-xs text-rose-400 font-medium mb-3 sm:mb-4">Ushbu sahifa faqat maxsus inson uchun!</p>
 
       <!-- Password Input Container -->
       <div class="relative w-full mb-3 cursor-pointer">
         <!-- Hidden Real Input -->
         <input type="password" id="passInput" class="opacity-0 absolute inset-0 w-full h-full z-20 cursor-pointer text-base" autocomplete="off" autofocus />
         <!-- Custom Heart Mask Display -->
-        <div id="passMaskDisplay" class="w-full py-3 px-4 bg-rose-50 rounded-2xl border-2 border-pink-300 text-center font-bold text-rose-600 tracking-widest min-h-[48px] flex items-center justify-center gap-1 text-lg">
+        <div id="passMaskDisplay" class="w-full py-2.5 px-3 bg-rose-50 rounded-2xl border-2 border-pink-300 text-center font-bold text-rose-600 tracking-widest min-h-[44px] flex items-center justify-center gap-1 text-base sm:text-lg">
           <span id="passPlaceholder" class="text-xs text-gray-400 font-normal">Parolni kiriting...</span>
         </div>
       </div>
@@ -38,7 +38,7 @@
         "Bu senga atalmagandur bor toshini ter " ❌😜
       </div>
 
-      <button id="passSubmitBtn" class="w-full py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl active:scale-95 transition-all text-sm border border-white/40">
+      <button id="passSubmitBtn" class="w-full py-2.5 sm:py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl active:scale-95 transition-all text-xs sm:text-sm border border-white/40">
         Kirish ❤️
       </button>
     </div>
@@ -46,12 +46,12 @@
 
   <!-- WELCOME CARD MODAL -->
   <div id="welcomeModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300 cursor-pointer">
-    <div class="bg-white/95 rounded-3xl p-6 max-w-xs w-full text-center shadow-2xl transform scale-90 transition-transform duration-300 border-2 border-pink-300" id="welcomeBox">
-      <div class="text-5xl mb-3 animate-bounce">👑 ✨ 🌹</div>
-      <h3 class="text-base sm:text-lg font-bold text-rose-700 leading-snug mb-4">
+    <div class="bg-white/95 rounded-3xl p-5 sm:p-6 max-w-xs w-full text-center shadow-2xl transform scale-90 transition-transform duration-300 border-2 border-pink-300" id="welcomeBox">
+      <div class="text-4xl sm:text-5xl mb-2 sm:mb-3 animate-bounce">👑 ✨ 🌹</div>
+      <h3 class="text-sm sm:text-base font-bold text-rose-700 leading-snug mb-3 sm:mb-4">
         Marxamat Malikam Rozibka Sevgi Maktubim faqat siz uchun
       </h3>
-      <p class="text-[11px] text-rose-400 font-medium animate-pulse">
+      <p class="text-[10px] sm:text-[11px] text-rose-400 font-medium animate-pulse">
         (Ekranning istalgan joyiga bosing 👆)
       </p>
     </div>
@@ -66,129 +66,129 @@
   <!-- Virtual Heart Cursor -->
   <div id="heartCursor" class="fixed top-0 left-0 pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-75">
     <div class="relative flex items-center justify-center">
-      <span class="text-3xl filter drop-shadow-md animate-pulse">❤️</span>
+      <span class="text-2xl sm:text-3xl filter drop-shadow-md animate-pulse">❤️</span>
       <!-- Cursor Pointer Dot -->
-      <span class="absolute w-2.5 h-2.5 bg-white rounded-full opacity-90 border border-pink-500 shadow-sm"></span>
+      <span class="absolute w-2 h-2 sm:w-2.5 sm:h-2.5 bg-white rounded-full opacity-90 border border-pink-500 shadow-sm"></span>
     </div>
   </div>
 
   <!-- MAIN CONTAINER -->
-  <main class="relative z-10 min-h-screen flex flex-col justify-between items-center px-4 pt-4 pb-44 max-w-md mx-auto">
+  <main class="relative z-10 min-h-[100dvh] flex flex-col justify-between items-center px-3 sm:px-4 pt-3 pb-36 sm:pb-44 max-w-md mx-auto">
     
     <!-- HEADER & LOVE MUSIC TOGGLE -->
     <header class="w-full flex justify-between items-center mb-1">
-      <div class="flex items-center gap-2 bg-white/60 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm">
-        <span class="text-xl animate-bounce">💖</span>
-        <span class="text-xs font-semibold text-rose-700">Sevgiliz Azizbekdan</span>
+      <div class="flex items-center gap-1.5 sm:gap-2 bg-white/60 backdrop-blur-md px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full shadow-sm">
+        <span class="text-lg sm:text-xl animate-bounce">💖</span>
+        <span class="text-[11px] sm:text-xs font-semibold text-rose-700">Sevgiliz Azizbekdan</span>
       </div>
-      <button id="musicBtn" class="bg-white/70 backdrop-blur-md p-2.5 rounded-full shadow-sm text-rose-600 hover:bg-white transition-all">
-        <i class="fas fa-music text-lg"></i>
+      <button id="musicBtn" class="bg-white/70 backdrop-blur-md p-2 sm:p-2.5 rounded-full shadow-sm text-rose-600 hover:bg-white transition-all">
+        <i class="fas fa-music text-base sm:text-lg"></i>
       </button>
     </header>
 
     <!-- ==================== PAGE 1 ==================== -->
-    <section id="page1" class="w-full flex-1 flex flex-col items-center justify-center text-center gap-3 transition-all duration-500">
+    <section id="page1" class="w-full flex-1 flex flex-col items-center justify-center text-center gap-2 sm:gap-3 transition-all duration-500">
       
       <!-- Loving Message Header -->
-      <div class="bg-white/75 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-white/60 w-full animate-fade-in">
-        <h1 class="text-xl sm:text-2xl font-bold font-['Fredoka'] text-rose-700 leading-snug mb-1 drop-shadow-sm">
+      <div class="bg-white/75 backdrop-blur-md p-3.5 sm:p-4 rounded-3xl shadow-xl border border-white/60 w-full animate-fade-in">
+        <h1 class="text-lg sm:text-xl font-bold font-['Fredoka'] text-rose-700 leading-snug mb-1 drop-shadow-sm">
           "Qizalog'im bu hammasi siz uchun , sizi juda juda yaxshi ko'raman "
         </h1>
-        <p class="text-[11px] text-rose-400 font-medium">meni eng qattiq sevgan Rozibkam uchun </p>
+        <p class="text-[10px] sm:text-[11px] text-rose-400 font-medium">meni eng qattiq sevgan Rozibkam uchun </p>
       </div>
 
       <!-- Cute Image Container (Kitten Image 1) -->
-      <div class="relative group my-1">
+      <div class="relative group my-0.5 sm:my-1 max-h-[30vh] flex items-center justify-center">
         <div class="absolute -inset-1 bg-gradient-to-r from-pink-400 to-rose-400 rounded-3xl blur opacity-50 group-hover:opacity-100 transition duration-300"></div>
-        <div class="relative bg-white/80 p-2 rounded-3xl shadow-lg border border-pink-200 max-w-[240px] mx-auto overflow-hidden">
-          <img src="assets/images/kitten.png" alt="Cute Kittens 1" class="w-full h-auto rounded-2xl object-cover transform hover:scale-105 transition-transform duration-300">
+        <div class="relative bg-white/80 p-1.5 sm:p-2 rounded-3xl shadow-lg border border-pink-200 max-w-[180px] sm:max-w-[230px] mx-auto overflow-hidden">
+          <img src="assets/images/kitten.png" alt="Cute Kittens 1" class="w-full h-auto max-h-[25vh] rounded-2xl object-contain transform hover:scale-105 transition-transform duration-300">
         </div>
       </div>
 
       <!-- Vertical Buttons Area Page 1 -->
-      <div id="buttonArea1" class="w-full flex flex-col items-center gap-3 relative min-h-[130px] justify-center mt-1">
+      <div id="buttonArea1" class="w-full flex flex-col items-center gap-2 sm:gap-3 relative min-h-[110px] justify-center mt-1">
         
         <!-- Button 1: Target Clickable Button -->
-        <button id="btnYes1" class="w-full py-3.5 px-5 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold text-sm sm:text-base rounded-2xl shadow-lg hover:shadow-xl transform active:scale-95 transition-all flex items-center justify-center gap-2 border-2 border-white/40">
+        <button id="btnYes1" class="w-full py-3 px-4 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold text-xs sm:text-sm rounded-2xl shadow-lg hover:shadow-xl transform active:scale-95 transition-all flex items-center justify-center gap-2 border-2 border-white/40">
           <span>menham sizi juda yaxshi ko'raman</span>
-          <span class="text-xl">🥰</span>
+          <span class="text-lg sm:text-xl">🥰</span>
         </button>
 
         <!-- Button 2: Evasive Runaway Button -->
-        <button id="btnNo1" class="w-auto px-8 py-2.5 bg-white/80 hover:bg-white text-rose-600 font-semibold text-xs sm:text-sm rounded-2xl shadow-md border border-pink-300 transition-all flex items-center justify-center gap-2 cursor-pointer relative mx-auto">
+        <button id="btnNo1" class="w-auto px-6 sm:px-8 py-2 sm:py-2.5 bg-white/80 hover:bg-white text-rose-600 font-semibold text-[11px] sm:text-xs rounded-2xl shadow-md border border-pink-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer relative mx-auto">
           <span>menham</span>
-          <span class="text-lg">😜</span>
+          <span class="text-base sm:text-lg">😜</span>
         </button>
 
       </div>
     </section>
 
     <!-- ==================== PAGE 2 ==================== -->
-    <section id="page2" class="w-full flex-1 flex flex-col items-center justify-center text-center gap-3 hidden transition-all duration-500">
+    <section id="page2" class="w-full flex-1 flex flex-col items-center justify-center text-center gap-2 sm:gap-3 hidden transition-all duration-500">
       
       <!-- Page 2 Loving Question Header -->
-      <div class="bg-white/75 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-white/60 w-full animate-fade-in">
-        <h1 class="text-xl sm:text-2xl font-bold font-['Fredoka'] text-rose-700 leading-snug mb-1 drop-shadow-sm">
+      <div class="bg-white/75 backdrop-blur-md p-3.5 sm:p-4 rounded-3xl shadow-xl border border-white/60 w-full animate-fade-in">
+        <h1 class="text-lg sm:text-xl font-bold font-['Fredoka'] text-rose-700 leading-snug mb-1 drop-shadow-sm">
           "Men bilan birga bo'lganingizdan xursandmisiz "
         </h1>
-        <p class="text-[11px] text-rose-400 font-medium">Rozibkam mening maxsus savolim 🥰</p>
+        <p class="text-[10px] sm:text-[11px] text-rose-400 font-medium">Rozibkam mening maxsus savolim 🥰</p>
       </div>
 
       <!-- Cute Image Container (Kitten Image 2) -->
-      <div class="relative group my-1">
+      <div class="relative group my-0.5 sm:my-1 max-h-[30vh] flex items-center justify-center">
         <div class="absolute -inset-1 bg-gradient-to-r from-pink-400 to-rose-400 rounded-3xl blur opacity-50 group-hover:opacity-100 transition duration-300"></div>
-        <div class="relative bg-white/80 p-2 rounded-3xl shadow-lg border border-pink-200 max-w-[240px] mx-auto overflow-hidden">
-          <img src="assets/images/kitten2.png" alt="Cute Kittens 2" class="w-full h-auto rounded-2xl object-cover transform hover:scale-105 transition-transform duration-300">
+        <div class="relative bg-white/80 p-1.5 sm:p-2 rounded-3xl shadow-lg border border-pink-200 max-w-[180px] sm:max-w-[230px] mx-auto overflow-hidden">
+          <img src="assets/images/kitten2.png" alt="Cute Kittens 2" class="w-full h-auto max-h-[25vh] rounded-2xl object-contain transform hover:scale-105 transition-transform duration-300">
         </div>
       </div>
 
       <!-- Vertical Buttons Area Page 2 -->
-      <div id="buttonArea2" class="w-full flex flex-col items-center gap-3 relative min-h-[130px] justify-center mt-1">
+      <div id="buttonArea2" class="w-full flex flex-col items-center gap-2 sm:gap-3 relative min-h-[110px] justify-center mt-1">
         
         <!-- Button 1: Target Clickable Button Page 2 -->
-        <button id="btnYes2" class="w-full py-3.5 px-5 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold text-sm sm:text-base rounded-2xl shadow-lg hover:shadow-xl transform active:scale-95 transition-all flex items-center justify-center gap-2 border-2 border-white/40">
+        <button id="btnYes2" class="w-full py-3 px-4 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold text-xs sm:text-sm rounded-2xl shadow-lg hover:shadow-xl transform active:scale-95 transition-all flex items-center justify-center gap-2 border-2 border-white/40">
           <span>Ha albatda Sevgilim</span>
-          <span class="text-xl">🥰</span>
+          <span class="text-lg sm:text-xl">🥰</span>
         </button>
 
         <!-- Button 2: Evasive Runaway Button Page 2 -->
-        <button id="btnNo2" class="w-auto px-8 py-2.5 bg-white/80 hover:bg-white text-rose-600 font-semibold text-xs sm:text-sm rounded-2xl shadow-md border border-pink-300 transition-all flex items-center justify-center gap-2 cursor-pointer relative mx-auto">
+        <button id="btnNo2" class="w-auto px-6 sm:px-8 py-2 sm:py-2.5 bg-white/80 hover:bg-white text-rose-600 font-semibold text-[11px] sm:text-xs rounded-2xl shadow-md border border-pink-300 transition-all flex items-center justify-center gap-1.5 cursor-pointer relative mx-auto">
           <span>Bilmasam , nasibda</span>
-          <span class="text-lg">😜</span>
+          <span class="text-base sm:text-lg">😜</span>
         </button>
 
       </div>
     </section>
 
     <!-- ==================== PAGE 3 (FINAL PAGE) ==================== -->
-    <section id="page3" class="w-full flex-1 flex flex-col items-center justify-center text-center gap-3 hidden transition-all duration-500">
+    <section id="page3" class="w-full flex-1 flex flex-col items-center justify-center text-center gap-2 sm:gap-3 hidden transition-all duration-500">
       
       <!-- Final Love Card -->
-      <div class="bg-white/85 backdrop-blur-md p-5 rounded-3xl shadow-2xl border border-white/70 w-full animate-pop-in relative overflow-hidden">
+      <div class="bg-white/85 backdrop-blur-md p-4 sm:p-5 rounded-3xl shadow-2xl border border-white/70 w-full animate-pop-in relative overflow-hidden">
         
         <!-- Kitten Image 3 in top corner/background -->
-        <div class="w-32 h-32 mx-auto mb-2 relative">
+        <div class="w-24 h-24 sm:w-30 sm:h-30 mx-auto mb-2 relative">
           <div class="absolute -inset-1 bg-gradient-to-r from-pink-400 to-rose-400 rounded-full blur opacity-60"></div>
           <img src="assets/images/kitten3.png" alt="Cute Kittens 3" class="w-full h-full rounded-full object-cover relative z-10 border-2 border-white shadow-md">
         </div>
 
-        <h2 class="text-lg font-bold font-['Fredoka'] text-rose-700 mb-2">
+        <h2 class="text-base sm:text-lg font-bold font-['Fredoka'] text-rose-700 mb-1.5">
           Rozibkamga Maxsus Maktub 💌
         </h2>
 
-        <div class="bg-rose-50/80 p-3.5 rounded-2xl border border-rose-200/80 mb-3">
-          <p class="text-xs sm:text-sm text-rose-900 leading-relaxed font-medium">
+        <div class="bg-rose-50/80 p-3 sm:p-3.5 rounded-2xl border border-rose-200/80 mb-2.5">
+          <p class="text-[11px] sm:text-xs text-rose-900 leading-relaxed font-medium">
             "O'zimni faqat o'zimni Rozibkam , o'zizi doim asrab yuring men uchun eng eng kerakli insonlardan siz , meni eng chiroyli ochilgan gulim , sizi juda juda sevaman , To'lib toshgan mexr ila erjoniz Azizbek"
           </p>
         </div>
 
         <!-- Success Congratulation Bottom Box -->
-        <div class="bg-gradient-to-r from-rose-500 to-pink-500 p-4 rounded-2xl shadow-lg text-white text-center">
-          <p class="text-xs font-bold leading-relaxed mb-3">
+        <div class="bg-gradient-to-r from-rose-500 to-pink-500 p-3 sm:p-4 rounded-2xl shadow-lg text-white text-center">
+          <p class="text-[11px] sm:text-xs font-bold leading-relaxed mb-2.5">
             "Siz hamma savollardan muvaffaqiyatli eson omon o'tib oldiz jonginam meniiii ,endi Tg ga kiring gaplashamiz oddushi"
           </p>
-          <a href="https://t.me/coder_zik" target="_blank" id="tgBtn" class="inline-flex items-center gap-2 py-2.5 px-6 bg-white text-rose-600 rounded-xl text-xs sm:text-sm font-bold shadow-md hover:bg-rose-50 transition-all active:scale-95 border border-rose-200">
-            <i class="fab fa-telegram text-base text-sky-500"></i>
+          <a href="https://t.me/coder_zik" target="_blank" id="tgBtn" class="inline-flex items-center gap-2 py-2 px-5 bg-white text-rose-600 rounded-xl text-[11px] sm:text-xs font-bold shadow-md hover:bg-rose-50 transition-all active:scale-95 border border-rose-200">
+            <i class="fab fa-telegram text-sm sm:text-base text-sky-500"></i>
             <span>Telegramga Go ❤️</span>
           </a>
         </div>
@@ -200,23 +200,23 @@
   </main>
 
   <!-- PHONE VIRTUAL TRACKPAD (Bottom Middle Controller) -->
-  <div class="fixed bottom-2 left-1/2 transform -translate-x-1/2 z-40 w-[94%] max-w-sm">
-    <div id="trackpad" class="bg-white/50 backdrop-blur-xl border-2 border-white/80 rounded-3xl p-2.5 shadow-2xl flex flex-col items-center relative overflow-hidden transition-all duration-300">
+  <div class="fixed bottom-2 left-1/2 transform -translate-x-1/2 z-40 w-[95%] max-w-xs sm:max-w-sm">
+    <div id="trackpad" class="bg-white/55 backdrop-blur-xl border-2 border-white/80 rounded-3xl p-2 sm:p-2.5 shadow-2xl flex flex-col items-center relative overflow-hidden transition-all duration-300">
       
       <!-- Trackpad Header / Label -->
       <div class="flex items-center justify-center w-full px-2 mb-1 pointer-events-none">
-        <div class="flex items-center gap-1.5 text-[11px] font-bold text-rose-800">
+        <div class="flex items-center gap-1.5 text-[10px] sm:text-[11px] font-bold text-rose-800">
           <i class="fas fa-heart text-rose-500 text-xs animate-pulse"></i>
           <span>jonim meni ,shu joydan boshqarasiz</span>
         </div>
       </div>
 
       <!-- Touch Area / Pad -->
-      <div id="touchZone" class="w-full h-24 sm:h-28 bg-gradient-to-b from-white/40 to-rose-100/50 rounded-2xl border border-rose-300/50 relative flex items-center justify-center touch-none cursor-crosshair">
+      <div id="touchZone" class="w-full h-20 sm:h-26 bg-gradient-to-b from-white/40 to-rose-100/50 rounded-2xl border border-rose-300/50 relative flex items-center justify-center touch-none cursor-crosshair">
         
         <div class="text-rose-400/50 text-center pointer-events-none select-none">
-          <i class="fas fa-hand-pointer text-xl mb-0.5 animate-bounce"></i>
-          <p class="text-[10px] font-medium">Boshqarish uchun shu yerda barmoqni suring</p>
+          <i class="fas fa-hand-pointer text-lg sm:text-xl mb-0.5 animate-bounce"></i>
+          <p class="text-[9px] sm:text-[10px] font-medium">Boshqarish uchun shu yerda barmoqni suring</p>
         </div>
 
         <!-- Touch Feedback Ripple Visual -->
@@ -224,8 +224,8 @@
       </div>
 
       <!-- Trackpad Bottom Tap Button (Laptop-like Click Bar) -->
-      <div class="w-full flex gap-2 mt-1.5">
-        <button id="trackpadClickBtn" class="w-full py-2 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 active:scale-[0.98] text-white rounded-xl text-xs font-bold shadow-md backdrop-blur-md flex items-center justify-center gap-1.5 transition-all border border-white/30">
+      <div class="w-full flex gap-2 mt-1 sm:mt-1.5">
+        <button id="trackpadClickBtn" class="w-full py-1.5 sm:py-2 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 active:scale-[0.98] text-white rounded-xl text-[11px] sm:text-xs font-bold shadow-md backdrop-blur-md flex items-center justify-center gap-1.5 transition-all border border-white/30">
           <i class="fas fa-mouse-pointer text-xs"></i>
           <span>Yurakcha bilan Tanlash (Click)</span>
         </button>
@@ -236,13 +236,13 @@
 
   <!-- OK SUCCESS MODAL PAGE 1 -->
   <div id="okModal1" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
-    <div class="bg-white rounded-3xl p-6 max-w-xs w-full text-center shadow-2xl transform scale-90 transition-transform duration-300 border-2 border-pink-300" id="modalBox1">
-      <div class="text-6xl mb-3 animate-bounce">💖</div>
-      <h3 class="text-xl font-bold text-rose-700 mb-2">Qabul Qilindi!</h3>
-      <p class="text-sm text-gray-600 mb-5">
+    <div class="bg-white rounded-3xl p-5 sm:p-6 max-w-xs w-full text-center shadow-2xl transform scale-90 transition-transform duration-300 border-2 border-pink-300" id="modalBox1">
+      <div class="text-5xl sm:text-6xl mb-2 sm:mb-3 animate-bounce">💖</div>
+      <h3 class="text-lg sm:text-xl font-bold text-rose-700 mb-1.5">Qabul Qilindi!</h3>
+      <p class="text-xs sm:text-sm text-gray-600 mb-4">
         Vayeey meni eng chiroyli gulim , menham sizi juda juda yaxshi ko'raman 🥰
       </p>
-      <button id="modalOkBtn1" class="w-full py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl active:scale-95 transition-all text-xs sm:text-sm">
+      <button id="modalOkBtn1" class="w-full py-2.5 sm:py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl active:scale-95 transition-all text-xs sm:text-sm">
         yaxshiiii ,go'zalim keyingisi sizi kutmoqda
       </button>
     </div>
@@ -250,13 +250,13 @@
 
   <!-- OK SUCCESS MODAL PAGE 2 -->
   <div id="okModal2" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
-    <div class="bg-white rounded-3xl p-6 max-w-xs w-full text-center shadow-2xl transform scale-90 transition-transform duration-300 border-2 border-pink-300" id="modalBox2">
-      <div class="text-6xl mb-3 animate-bounce">👑</div>
-      <h3 class="text-xl font-bold text-rose-700 mb-2">Jonim O'zimni!</h3>
-      <p class="text-sm text-gray-600 mb-5">
+    <div class="bg-white rounded-3xl p-5 sm:p-6 max-w-xs w-full text-center shadow-2xl transform scale-90 transition-transform duration-300 border-2 border-pink-300" id="modalBox2">
+      <div class="text-5xl sm:text-6xl mb-2 sm:mb-3 animate-bounce">👑</div>
+      <h3 class="text-lg sm:text-xl font-bold text-rose-700 mb-1.5">Jonim O'zimni!</h3>
+      <p class="text-xs sm:text-sm text-gray-600 mb-4">
         Janonim o'zimni , sizi inshaalllah juda juda baxtli qilaman , quvonchim o'zimni 🥰
       </p>
-      <button id="modalOkBtn2" class="w-full py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl active:scale-95 transition-all text-xs">
+      <button id="modalOkBtn2" class="w-full py-2.5 sm:py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl active:scale-95 transition-all text-[11px] sm:text-xs">
         quvonchim meni ,blamanda yaxshi ko'rishizi ,go keyingisiga
       </button>
     </div>
