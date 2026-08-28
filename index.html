@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Qizalog'im Uchun ❤️</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Poppins & Caveat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gradient-to-br from-pink-100 via-rose-200 to-red-100 min-h-screen font-['Poppins'] overflow-hidden select-none relative">
+
+  <!-- Background Floating Hearts Canvas -->
+  <canvas id="heartCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
+
+  <!-- Virtual Heart Cursor -->
+  <div id="heartCursor" class="fixed top-0 left-0 pointer-events-none z-50 transform -translate-x-1/2 -translate-y-1/2 transition-transform duration-75">
+    <div class="relative flex items-center justify-center">
+      <span class="text-3xl filter drop-shadow-md animate-pulse">❤️</span>
+      <!-- Cursor Pointer Dot -->
+      <span class="absolute w-2.5 h-2.5 bg-white rounded-full opacity-90 border border-pink-500 shadow-sm"></span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="relative z-10 min-h-screen flex flex-col justify-between items-center px-4 pt-4 pb-44 max-w-md mx-auto">
+    
+    <!-- HEADER & LOVE MUSIC TOGGLE -->
+    <header class="w-full flex justify-between items-center mb-1">
+      <div class="flex items-center gap-2 bg-white/60 backdrop-blur-md px-3.5 py-1.5 rounded-full shadow-sm">
+        <span class="text-xl animate-bounce">💖</span>
+        <span class="text-xs font-semibold text-rose-700">Sevgiliz Azizbekdan</span>
+      </div>
+      <button id="musicBtn" class="bg-white/70 backdrop-blur-md p-2.5 rounded-full shadow-sm text-rose-600 hover:bg-white transition-all">
+        <i class="fas fa-music text-lg"></i>
+      </button>
+    </header>
+
+    <!-- PAGE 1 CONTENT -->
+    <section id="page1" class="w-full flex-1 flex flex-col items-center justify-center text-center gap-3 transition-all duration-500">
+      
+      <!-- Loving Message Header -->
+      <div class="bg-white/75 backdrop-blur-md p-4 rounded-3xl shadow-xl border border-white/60 w-full animate-fade-in">
+        <h1 class="text-xl sm:text-2xl font-bold font-['Fredoka'] text-rose-700 leading-snug mb-1 drop-shadow-sm">
+          "Qizalog'im bu hammasi siz uchun , sizi juda juda yaxshi ko'raman "
+        </h1>
+        <p class="text-[11px] text-rose-400 font-medium">meni eng qattiq sevgan Rozibkam uchun </p>
+      </div>
+
+      <!-- Cute Image Container (Uploaded Kitten Image) -->
+      <div class="relative group my-1">
+        <div class="absolute -inset-1 bg-gradient-to-r from-pink-400 to-rose-400 rounded-3xl blur opacity-50 group-hover:opacity-100 transition duration-300"></div>
+        <div class="relative bg-white/80 p-2 rounded-3xl shadow-lg border border-pink-200 max-w-[240px] mx-auto overflow-hidden">
+          <img src="assets/images/kitten.png" alt="Cute Kittens" class="w-full h-auto rounded-2xl object-cover transform hover:scale-105 transition-transform duration-300">
+        </div>
+      </div>
+
+      <!-- Vertical Buttons Area -->
+      <div id="buttonArea" class="w-full flex flex-col items-center gap-3 relative min-h-[130px] justify-center mt-1">
+        
+        <!-- Button 1: Target Clickable Button -->
+        <button id="btnYes" class="w-full py-3.5 px-5 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold text-sm sm:text-base rounded-2xl shadow-lg hover:shadow-xl transform active:scale-95 transition-all flex items-center justify-center gap-2 border-2 border-white/40">
+          <span>menham sizi juda yaxshi ko'raman</span>
+          <span class="text-xl">🥰</span>
+        </button>
+
+        <!-- Button 2: Evasive Runaway Button -->
+        <button id="btnNo" class="w-auto px-8 py-2.5 bg-white/80 hover:bg-white text-rose-600 font-semibold text-xs sm:text-sm rounded-2xl shadow-md border border-pink-300 transition-all flex items-center justify-center gap-2 cursor-pointer relative mx-auto">
+          <span>menham</span>
+          <span class="text-lg">😜</span>
+        </button>
+
+      </div>
+    </section>
+
+    <!-- PAGE 2 CONTENT (Hidden Initially) -->
+    <section id="page2" class="w-full flex-1 flex flex-col items-center justify-center text-center gap-4 hidden transition-all duration-500">
+      
+      <div class="bg-white/85 backdrop-blur-md p-6 rounded-3xl shadow-2xl border border-white/70 w-full animate-pop-in">
+        <div class="text-5xl mb-3">👑 ✨ 🎁</div>
+        <h2 class="text-2xl font-bold font-['Fredoka'] text-rose-700 mb-2">
+          Rahmat Jonim! ❤️
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-700 leading-relaxed mb-4">
+          Siz mening hayotimdagi eng katta baxtimsiz! Sizga har doim omad va kulgu yor bo'lsin!
+        </p>
+
+        <!-- Interactive Surprise Cards -->
+        <div class="grid grid-cols-2 gap-3 mb-4">
+          <div class="bg-rose-50 p-3.5 rounded-2xl border border-rose-200 flex flex-col items-center justify-center cursor-pointer hover:bg-rose-100 transition-all gift-card" onclick="alert('Azizbek sizni har soniya o-y-l-a-y-d-i! 🌸')">
+            <span class="text-3xl mb-1">💌</span>
+            <span class="text-xs font-bold text-rose-800">Shirin Tilaklar</span>
+          </div>
+          <div class="bg-pink-50 p-3.5 rounded-2xl border border-pink-200 flex flex-col items-center justify-center cursor-pointer hover:bg-pink-100 transition-all gift-card" onclick="alert('Siz mening eng yorqin yulduzimsiz! ⭐')">
+            <span class="text-3xl mb-1">⭐</span>
+            <span class="text-xs font-bold text-pink-800">Yulduzimsan</span>
+          </div>
+        </div>
+
+        <button id="btnBack" class="py-2.5 px-6 bg-rose-500 text-white rounded-xl text-xs font-bold shadow-md hover:bg-rose-600 transition-all">
+          <i class="fas fa-arrow-left mr-1"></i> Bosh sahifaga qaytish
+        </button>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- PHONE VIRTUAL TRACKPAD (Bottom Middle Controller) -->
+  <div class="fixed bottom-2 left-1/2 transform -translate-x-1/2 z-40 w-[94%] max-w-sm">
+    <div id="trackpad" class="bg-white/50 backdrop-blur-xl border-2 border-white/80 rounded-3xl p-2.5 shadow-2xl flex flex-col items-center relative overflow-hidden transition-all duration-300">
+      
+      <!-- Trackpad Header / Label -->
+      <div class="flex items-center justify-center w-full px-2 mb-1 pointer-events-none">
+        <div class="flex items-center gap-1.5 text-[11px] font-bold text-rose-800">
+          <i class="fas fa-heart text-rose-500 text-xs animate-pulse"></i>
+          <span>jonim meni ,shu joydan boshqarasiz</span>
+        </div>
+      </div>
+
+      <!-- Touch Area / Pad -->
+      <div id="touchZone" class="w-full h-24 sm:h-28 bg-gradient-to-b from-white/40 to-rose-100/50 rounded-2xl border border-rose-300/50 relative flex items-center justify-center touch-none cursor-crosshair">
+        
+        <div class="text-rose-400/50 text-center pointer-events-none select-none">
+          <i class="fas fa-hand-pointer text-xl mb-0.5 animate-bounce"></i>
+          <p class="text-[10px] font-medium">Boshqarish uchun shu yerda barmoqni suring</p>
+        </div>
+
+        <!-- Touch Feedback Ripple Visual -->
+        <div id="touchRipple" class="absolute w-8 h-8 rounded-full bg-rose-400/40 border border-rose-500/60 pointer-events-none transform -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity"></div>
+      </div>
+
+      <!-- Trackpad Bottom Tap Button (Laptop-like Click Bar) -->
+      <div class="w-full flex gap-2 mt-1.5">
+        <button id="trackpadClickBtn" class="w-full py-2 bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 active:scale-[0.98] text-white rounded-xl text-xs font-bold shadow-md backdrop-blur-md flex items-center justify-center gap-1.5 transition-all border border-white/30">
+          <i class="fas fa-mouse-pointer text-xs"></i>
+          <span>Yurakcha bilan Tanlash (Click)</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OK SUCCESS MODAL -->
+  <div id="okModal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="bg-white rounded-3xl p-6 max-w-xs w-full text-center shadow-2xl transform scale-90 transition-transform duration-300 border-2 border-pink-300" id="modalBox">
+      <div class="text-6xl mb-3 animate-bounce">💖</div>
+      <h3 class="text-xl font-bold text-rose-700 mb-2">Qabul Qilindi!</h3>
+      <p class="text-sm text-gray-600 mb-5">
+        Vayeey meni eng chiroyli gulim , menham sizi juda juda yaxshi ko'raman 🥰
+      </p>
+      <button id="modalOkBtn" class="w-full py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl active:scale-95 transition-all text-base">
+        OK 👍 (Keyingi Saxifaga O'tish)
+      </button>
+    </div>
+  </div>
+
+  <!-- Audio Element -->
+  <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lullaby-11013.mp3"></audio>
+
+  <script src="main.js"></script>
+</body>
+</html>
