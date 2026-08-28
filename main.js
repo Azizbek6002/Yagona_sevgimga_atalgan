@@ -1,4 +1,4 @@
-// JavaScript logic for Heart Cursor, Virtual Trackpad, and Evasive Button
+// JavaScript logic for 3 Pages, Heart Cursor, Virtual Trackpad, Evasive Buttons & Sticker Rain
 
 document.addEventListener('DOMContentLoaded', () => {
   // Elements
@@ -7,17 +7,27 @@ document.addEventListener('DOMContentLoaded', () => {
   const touchRipple = document.getElementById('touchRipple');
   const trackpadClickBtn = document.getElementById('trackpadClickBtn');
   
-  const btnYes = document.getElementById('btnYes');
-  const btnNo = document.getElementById('btnNo');
-  
-  const okModal = document.getElementById('okModal');
-  const modalBox = document.getElementById('modalBox');
-  const modalOkBtn = document.getElementById('modalOkBtn');
-  
+  // Page 1 Elements
   const page1 = document.getElementById('page1');
-  const page2 = document.getElementById('page2');
-  const btnBack = document.getElementById('btnBack');
+  const btnYes1 = document.getElementById('btnYes1');
+  const btnNo1 = document.getElementById('btnNo1');
+  const okModal1 = document.getElementById('okModal1');
+  const modalBox1 = document.getElementById('modalBox1');
+  const modalOkBtn1 = document.getElementById('modalOkBtn1');
   
+  // Page 2 Elements
+  const page2 = document.getElementById('page2');
+  const btnYes2 = document.getElementById('btnYes2');
+  const btnNo2 = document.getElementById('btnNo2');
+  const okModal2 = document.getElementById('okModal2');
+  const modalBox2 = document.getElementById('modalBox2');
+  const modalOkBtn2 = document.getElementById('modalOkBtn2');
+
+  // Page 3 Elements
+  const page3 = document.getElementById('page3');
+  const stickerRain = document.getElementById('stickerRain');
+  
+  // Audio & Music
   const musicBtn = document.getElementById('musicBtn');
   const bgMusic = document.getElementById('bgMusic');
 
@@ -33,8 +43,8 @@ document.addEventListener('DOMContentLoaded', () => {
     heartCursor.style.left = `${cursorX}px`;
     heartCursor.style.top = `${cursorY}px`;
 
-    // Check distance to runaway button
-    checkRunawayButton();
+    // Check distance to active runaway button
+    checkRunawayButtons();
   }
 
   // Set initial position
@@ -132,9 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Direct Screen Touch / Pointer Sync (so touching anywhere also moves cursor if desired)
+  // Direct Screen Touch / Pointer Sync
   window.addEventListener('pointermove', (e) => {
-    // If not dragging trackpad, sync cursor slightly to mouse pointer on desktop
     if (!isTouchingPad && !isMouseDown && e.pointerType === 'mouse') {
       updateCursorPosition(e.clientX, e.clientY);
     }
@@ -144,16 +153,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // TRIGGER CLICK AT HEART CURSOR LOCATION
   // ----------------------------------------------------
   function triggerHeartClick() {
-    // Spawn heart ripple effect at cursor position
     createClickHeartBurst(cursorX, cursorY);
 
-    // Hide cursor temporarily to elementFromPoint target
     heartCursor.style.display = 'none';
     const targetElement = document.elementFromPoint(cursorX, cursorY);
     heartCursor.style.display = 'block';
 
     if (targetElement) {
-      // Find closest button or clickable element
       const clickable = targetElement.closest('button, .gift-card, a');
       if (clickable) {
         clickable.click();
@@ -166,46 +172,58 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ----------------------------------------------------
-  // EVASIVE RUNAWAY "menham" BUTTON ALGORITHM
+  // EVASIVE RUNAWAY BUTTONS ALGORITHM (Page 1 & Page 2)
   // ----------------------------------------------------
-  let isEvasiveFixed = false;
+  let isEvasiveFixed1 = false;
+  let isEvasiveFixed2 = false;
 
-  function checkRunawayButton() {
-    if (page1.classList.contains('hidden')) return;
+  function checkRunawayButtons() {
+    // Page 1 runaway button check
+    if (!page1.classList.contains('hidden')) {
+      checkButtonProximity(btnNo1, () => runawayButton(btnNo1, 1));
+    }
+    // Page 2 runaway button check
+    if (!page2.classList.contains('hidden')) {
+      checkButtonProximity(btnNo2, () => runawayButton(btnNo2, 2));
+    }
+  }
 
-    const btnRect = btnNo.getBoundingClientRect();
+  function checkButtonProximity(btnElem, runawayCallback) {
+    if (!btnElem) return;
+    const btnRect = btnElem.getBoundingClientRect();
     const btnCenterX = btnRect.left + btnRect.width / 2;
     const btnCenterY = btnRect.top + btnRect.height / 2;
 
     const dist = Math.hypot(cursorX - btnCenterX, cursorY - btnCenterY);
 
-    // Proximity threshold (110px) - flees when heart cursor gets close
     if (dist < 110) {
-      runawayButton();
+      runawayCallback();
     }
   }
 
-  function runawayButton() {
-    if (!isEvasiveFixed) {
-      btnNo.style.position = 'fixed';
-      btnNo.style.zIndex = '35';
-      isEvasiveFixed = true;
+  function runawayButton(btnElem, pageNum) {
+    if (pageNum === 1 && !isEvasiveFixed1) {
+      btnElem.style.position = 'fixed';
+      btnElem.style.zIndex = '35';
+      isEvasiveFixed1 = true;
+    } else if (pageNum === 2 && !isEvasiveFixed2) {
+      btnElem.style.position = 'fixed';
+      btnElem.style.zIndex = '35';
+      isEvasiveFixed2 = true;
     }
 
-    // Available screen boundaries (leave space for header & trackpad at bottom)
     const padding = 25;
-    const btnW = btnNo.offsetWidth || 120;
-    const btnH = btnNo.offsetHeight || 45;
+    const btnW = btnElem.offsetWidth || 140;
+    const btnH = btnElem.offsetHeight || 45;
 
     const minX = padding;
     const maxX = Math.max(minX + 20, window.innerWidth - btnW - padding);
     const minY = 70;
-    const maxY = Math.max(minY + 20, window.innerHeight - btnH - 180); // keep above trackpad area
+    const maxY = Math.max(minY + 20, window.innerHeight - btnH - 180);
 
     let randomX = Math.random() * (maxX - minX) + minX;
     let randomY = Math.random() * (maxY - minY) + minY;
 
-    // Make sure new spot is at least 150px away from heart cursor so it feels like a real escape
     let attempts = 0;
     while (Math.hypot(cursorX - (randomX + btnW / 2), cursorY - (randomY + btnH / 2)) < 150 && attempts < 10) {
       randomX = Math.random() * (maxX - minX) + minX;
@@ -213,37 +231,78 @@ document.addEventListener('DOMContentLoaded', () => {
       attempts++;
     }
 
-    btnNo.style.left = `${randomX}px`;
-    btnNo.style.top = `${randomY}px`;
-    btnNo.style.transform = `rotate(${(Math.random() - 0.5) * 30}deg) scale(1.05)`;
+    btnElem.style.left = `${randomX}px`;
+    btnElem.style.top = `${randomY}px`;
+    btnElem.style.transform = `rotate(${(Math.random() - 0.5) * 30}deg) scale(1.05)`;
 
-    // Sparkle effect
     createMiniHeart(randomX + btnW / 2, randomY + btnH / 2);
   }
 
-  function btnRectCenter(elem) {
-    const rect = elem.getBoundingClientRect();
-    return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
-  }
-
-  // Also trigger runaway if hovered or touched directly
-  btnNo.addEventListener('mouseenter', runawayButton);
-  btnNo.addEventListener('pointermove', runawayButton);
-  btnNo.addEventListener('touchstart', (e) => {
+  // Event Listeners for Page 1 Runaway Button
+  btnNo1.addEventListener('mouseenter', () => runawayButton(btnNo1, 1));
+  btnNo1.addEventListener('pointermove', () => runawayButton(btnNo1, 1));
+  btnNo1.addEventListener('touchstart', (e) => {
     e.preventDefault();
-    runawayButton();
+    runawayButton(btnNo1, 1);
+  });
+
+  // Event Listeners for Page 2 Runaway Button
+  btnNo2.addEventListener('mouseenter', () => runawayButton(btnNo2, 2));
+  btnNo2.addEventListener('pointermove', () => runawayButton(btnNo2, 2));
+  btnNo2.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    runawayButton(btnNo2, 2);
   });
 
   // ----------------------------------------------------
-  // "menham sizi juda yaxshi ko'raman" YES BUTTON & MODAL
+  // PAGE 1: TARGET BUTTON -> MODAL 1 -> PAGE 2
   // ----------------------------------------------------
-  btnYes.addEventListener('click', () => {
-    // Show OK Modal
-    okModal.classList.remove('opacity-0', 'pointer-events-none');
-    modalBox.classList.remove('scale-90');
-    modalBox.classList.add('scale-100');
+  btnYes1.addEventListener('click', () => {
+    okModal1.classList.remove('opacity-0', 'pointer-events-none');
+    modalBox1.classList.remove('scale-90');
+    modalBox1.classList.add('scale-100');
 
-    // Confetti Heart Explosion
+    triggerExplosion();
+  });
+
+  modalOkBtn1.addEventListener('click', () => {
+    okModal1.classList.add('opacity-0', 'pointer-events-none');
+    modalBox1.classList.remove('scale-100');
+    modalBox1.classList.add('scale-90');
+
+    // Switch from Page 1 to Page 2
+    page1.classList.add('hidden');
+    page2.classList.remove('hidden');
+    page2.classList.add('flex');
+  });
+
+  // ----------------------------------------------------
+  // PAGE 2: TARGET BUTTON -> MODAL 2 -> PAGE 3
+  // ----------------------------------------------------
+  btnYes2.addEventListener('click', () => {
+    okModal2.classList.remove('opacity-0', 'pointer-events-none');
+    modalBox2.classList.remove('scale-90');
+    modalBox2.classList.add('scale-100');
+
+    triggerExplosion();
+  });
+
+  modalOkBtn2.addEventListener('click', () => {
+    okModal2.classList.add('opacity-0', 'pointer-events-none');
+    modalBox2.classList.remove('scale-100');
+    modalBox2.classList.add('scale-90');
+
+    // Switch from Page 2 to Page 3
+    page2.classList.add('hidden');
+    page2.classList.remove('flex');
+    page3.classList.remove('hidden');
+    page3.classList.add('flex');
+
+    // Start Love Sticker Rain on Page 3!
+    startStickerRain();
+  });
+
+  function triggerExplosion() {
     for (let i = 0; i < 30; i++) {
       setTimeout(() => {
         createClickHeartBurst(
@@ -252,34 +311,40 @@ document.addEventListener('DOMContentLoaded', () => {
         );
       }, i * 40);
     }
-  });
+  }
 
-  // MODAL OK BUTTON CLICK -> TRANSITION TO PAGE 2
-  modalOkBtn.addEventListener('click', () => {
-    // Hide Modal
-    okModal.classList.add('opacity-0', 'pointer-events-none');
-    modalBox.classList.remove('scale-100');
-    modalBox.classList.add('scale-90');
+  // ----------------------------------------------------
+  // PAGE 3: LOVE STICKER RAIN ENGINE
+  // ----------------------------------------------------
+  const loveStickers = ['💖', '💕', '❤️', '🌸', '✨', '🥰', '👑', '😻', '🌹', '💗'];
 
-    // Transition Pages
-    page1.classList.add('hidden');
-    page2.classList.remove('hidden');
-    page2.classList.add('flex');
-  });
+  function startStickerRain() {
+    stickerRain.classList.remove('hidden');
+    
+    // Generate falling stickers every 300ms
+    setInterval(() => {
+      if (page3.classList.contains('hidden')) return;
 
-  // PAGE 2 BACK BUTTON
-  btnBack.addEventListener('click', () => {
-    page2.classList.add('hidden');
-    page2.classList.remove('flex');
-    page1.classList.remove('hidden');
+      const sticker = document.createElement('div');
+      sticker.className = 'falling-sticker';
+      sticker.innerHTML = loveStickers[Math.floor(Math.random() * loveStickers.length)];
+      
+      const startX = Math.random() * window.innerWidth;
+      const duration = Math.random() * 3 + 2.5; // 2.5s to 5.5s
+      const size = Math.random() * 20 + 18; // 18px to 38px
 
-    // Reset runaway button position
-    btnNo.style.position = 'relative';
-    btnNo.style.left = 'auto';
-    btnNo.style.top = 'auto';
-    btnNo.style.transform = 'none';
-    isEvasiveFixed = false;
-  });
+      sticker.style.left = `${startX}px`;
+      sticker.style.animationDuration = `${duration}s`;
+      sticker.style.fontSize = `${size}px`;
+
+      stickerRain.appendChild(sticker);
+
+      // Clean up after animation finishes
+      setTimeout(() => {
+        sticker.remove();
+      }, duration * 1000);
+    }, 250);
+  }
 
   // ----------------------------------------------------
   // BACKGROUND FLOATING HEARTS ANIMATION CANVAS
@@ -338,7 +403,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
   animateCanvas();
 
-  // Helper function for click heart burst
+  // Helper functions for particles
   function createClickHeartBurst(x, y) {
     for (let i = 0; i < 6; i++) {
       const heart = document.createElement('div');

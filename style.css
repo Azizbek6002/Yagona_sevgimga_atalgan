@@ -1,4 +1,4 @@
-/* Custom styling for Love Atmosphere & Heart Cursor app */
+/* Custom styling for Love Atmosphere, Heart Cursor & Sticker Rain */
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-10px); }
@@ -33,8 +33,8 @@
   transform: scale(0.96);
 }
 
-/* Evasive Runaway Button Transition */
-#btnNo {
+/* Evasive Runaway Buttons Transition */
+#btnNo1, #btnNo2 {
   transition: top 0.2s cubic-bezier(0.25, 1, 0.5, 1), left 0.2s cubic-bezier(0.25, 1, 0.5, 1), transform 0.2s ease;
   will-change: top, left, transform;
 }
@@ -47,4 +47,24 @@
 
 .touch-pulsing {
   animation: touchPulse 0.4s ease-out forwards;
+}
+
+/* Sticker Rain Keyframes for Page 3 */
+@keyframes stickerFall {
+  0% {
+    transform: translateY(-50px) rotate(0deg) scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(105vh) rotate(360deg) scale(1.2);
+    opacity: 0.2;
+  }
+}
+
+.falling-sticker {
+  position: fixed;
+  top: -60px;
+  pointer-events: none;
+  z-index: 5;
+  animation: stickerFall linear infinite;
 }
