@@ -7,6 +7,91 @@ document.addEventListener('DOMContentLoaded', () => {
   const touchRipple = document.getElementById('touchRipple');
   const trackpadClickBtn = document.getElementById('trackpadClickBtn');
   
+  // Password Gate Elements
+  const passwordOverlay = document.getElementById('passwordOverlay');
+  const passBox = document.getElementById('passBox');
+  const passInput = document.getElementById('passInput');
+  const passMaskDisplay = document.getElementById('passMaskDisplay');
+  const passError = document.getElementById('passError');
+  const passSubmitBtn = document.getElementById('passSubmitBtn');
+
+  // Welcome Card Elements
+  const welcomeModal = document.getElementById('welcomeModal');
+  const welcomeBox = document.getElementById('welcomeBox');
+
+  const CORRECT_PASS = 'sizi_sevaman';
+
+  // Render heart icons for password input characters
+  if (passInput) {
+    passInput.addEventListener('input', () => {
+      const len = passInput.value.length;
+      passError.classList.add('hidden');
+      passBox.classList.remove('animate-shake');
+
+      if (len === 0) {
+        passMaskDisplay.innerHTML = '<span id="passPlaceholder" class="text-xs text-gray-400 font-normal">Parolni kiriting...</span>';
+      } else {
+        let heartsHtml = '';
+        for (let i = 0; i < len; i++) {
+          heartsHtml += '<span class="text-rose-500 animate-pulse text-base">❤️</span>';
+        }
+        passMaskDisplay.innerHTML = heartsHtml;
+      }
+    });
+
+    passSubmitBtn.addEventListener('click', checkPassword);
+    passInput.addEventListener('keyup', (e) => {
+      if (e.key === 'Enter') checkPassword();
+    });
+  }
+
+  function checkPassword() {
+    const val = passInput.value.trim();
+    if (val === CORRECT_PASS) {
+      // Correct Password -> Hide Gate Overlay
+      passwordOverlay.classList.add('opacity-0', 'pointer-events-none');
+      setTimeout(() => passwordOverlay.classList.add('hidden'), 300);
+
+      // Show Welcome Card Modal
+      welcomeModal.classList.remove('opacity-0', 'pointer-events-none');
+      welcomeBox.classList.remove('scale-90');
+      welcomeBox.classList.add('scale-100');
+
+      // Heart Explosion
+      triggerExplosion();
+    } else {
+      // Incorrect Password -> Show Error & Shake Box
+      passError.classList.remove('hidden');
+      passBox.classList.remove('animate-shake');
+      void passBox.offsetWidth; // force reflow for animation restart
+      passBox.classList.add('animate-shake');
+      passInput.value = '';
+      passMaskDisplay.innerHTML = '<span id="passPlaceholder" class="text-xs text-gray-400 font-normal">Parolni kiriting...</span>';
+    }
+  }
+
+  // Dismiss Welcome Modal when clicking/tapping anywhere on screen
+  function dismissWelcomeModal() {
+    if (!welcomeModal.classList.contains('opacity-0')) {
+      welcomeModal.classList.add('opacity-0', 'pointer-events-none');
+      welcomeBox.classList.remove('scale-100');
+      welcomeBox.classList.add('scale-90');
+      setTimeout(() => welcomeModal.classList.add('hidden'), 300);
+
+      // Auto start music on enter
+      bgMusic.play().then(() => {
+        isPlayingMusic = true;
+        musicBtn.classList.add('bg-rose-500', 'text-white');
+        musicBtn.classList.remove('bg-white/70', 'text-rose-600');
+      }).catch(() => {});
+    }
+  }
+
+  if (welcomeModal) {
+    welcomeModal.addEventListener('click', dismissWelcomeModal);
+    welcomeModal.addEventListener('touchstart', dismissWelcomeModal);
+  }
+
   // Page 1 Elements
   const page1 = document.getElementById('page1');
   const btnYes1 = document.getElementById('btnYes1');

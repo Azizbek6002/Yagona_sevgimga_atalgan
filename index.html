@@ -16,6 +16,47 @@
 </head>
 <body class="bg-gradient-to-br from-pink-100 via-rose-200 to-red-100 min-h-screen font-['Poppins'] overflow-hidden select-none relative">
 
+  <!-- PASSWORD GATE OVERLAY -->
+  <div id="passwordOverlay" class="fixed inset-0 z-50 bg-gradient-to-br from-pink-200 via-rose-300 to-red-200 flex items-center justify-center p-4">
+    <div class="bg-white/90 backdrop-blur-xl rounded-3xl p-6 max-w-xs w-full text-center shadow-2xl border-2 border-white/80 animate-pop-in" id="passBox">
+      <div class="text-5xl mb-3 animate-pulse">🔒💖</div>
+      <h2 class="text-xl font-bold text-rose-700 mb-1">Maxfiy Parol</h2>
+      <p class="text-xs text-rose-400 font-medium mb-4">Ushbu sahifa faqat maxsus inson uchun!</p>
+
+      <!-- Password Input Container -->
+      <div class="relative w-full mb-3 cursor-pointer">
+        <!-- Hidden Real Input -->
+        <input type="password" id="passInput" class="opacity-0 absolute inset-0 w-full h-full z-20 cursor-pointer text-base" autocomplete="off" autofocus />
+        <!-- Custom Heart Mask Display -->
+        <div id="passMaskDisplay" class="w-full py-3 px-4 bg-rose-50 rounded-2xl border-2 border-pink-300 text-center font-bold text-rose-600 tracking-widest min-h-[48px] flex items-center justify-center gap-1 text-lg">
+          <span id="passPlaceholder" class="text-xs text-gray-400 font-normal">Parolni kiriting...</span>
+        </div>
+      </div>
+
+      <!-- Error Message Box -->
+      <div id="passError" class="text-xs font-bold text-red-500 mb-3 hidden leading-snug">
+        "Bu senga atalmagandur bor toshini ter " ❌😜
+      </div>
+
+      <button id="passSubmitBtn" class="w-full py-3 bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold rounded-2xl shadow-lg hover:shadow-xl active:scale-95 transition-all text-sm border border-white/40">
+        Kirish ❤️
+      </button>
+    </div>
+  </div>
+
+  <!-- WELCOME CARD MODAL -->
+  <div id="welcomeModal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-md flex items-center justify-center p-4 opacity-0 pointer-events-none transition-all duration-300 cursor-pointer">
+    <div class="bg-white/95 rounded-3xl p-6 max-w-xs w-full text-center shadow-2xl transform scale-90 transition-transform duration-300 border-2 border-pink-300" id="welcomeBox">
+      <div class="text-5xl mb-3 animate-bounce">👑 ✨ 🌹</div>
+      <h3 class="text-base sm:text-lg font-bold text-rose-700 leading-snug mb-4">
+        Marxamat Malikam Rozibka Sevgi Maktubim faqat siz uchun
+      </h3>
+      <p class="text-[11px] text-rose-400 font-medium animate-pulse">
+        (Ekranning istalgan joyiga bosing 👆)
+      </p>
+    </div>
+  </div>
+
   <!-- Background Floating Hearts Canvas -->
   <canvas id="heartCanvas" class="fixed inset-0 pointer-events-none z-0"></canvas>
 
